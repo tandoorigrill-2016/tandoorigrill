@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tandoori Grill | Indian & Mexican Fusion</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Style -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      background-color: #d35400;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffeaa7;
+    }
+
+    /* Hero Section */
+    #home {
+      background: url('https://images.unsplash.com/photo-1613145993481-1b1b8a911aaf?auto=format&fit=crop&w=1400&q=80')
+        center/cover no-repeat;
+      color: white;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
+
+    #home h2 {
+      font-size: 3rem;
+    }
+
+    #home p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+      max-width: 600px;
+    }
+
+    /* Menu Section */
+    #menu {
+      padding: 60px 20px;
+      background-color: #fff;
+    }
+
+    #menu h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #d35400;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .menu-item {
+      background: #fff8f0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item h3 {
+      color: #d35400;
+      margin-bottom: 5px;
+    }
+
+    .menu-item p {
+      font-size: 0.95rem;
+    }
+
+    /* About Section */
+    #about {
+      padding: 60px 20px;
+      background-color: #fef5e7;
+      text-align: center;
+    }
+
+    #about h2 {
+      color: #d35400;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    #about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #contact h2 {
+      color: #d35400;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      margin: 8px 0;
+    }
+
+    /* Contact Form */
+    form {
+      margin-top: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, textarea {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #d35400;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b84300;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ffeaa7;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Fade Animation */
+    section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #home h2 {
+        font-size: 2.2rem;
+      }
+      nav a {
+        display: inline-block;
+        margin: 8px;
+      }
+      .menu-item img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><img src="C:\Users\simra\Downloads\51129ea5-c52d-44ab-b2ca-e049ac713bd1.jpeg" alt="tandoori grill" style="width: 50px; height: 50px;">Tandoori Grill Indian & Mexican <img src="C:\Users\simra\Downloads\51129ea5-c52d-44ab-b2ca-e049ac713bd1.jpeg" alt="tandoori grill" style="width: 50px; height: 50px;"></h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#photos">Photos</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2 style="color: black;">Welcome to Tandoori Grill Benalmadena <br> (Arroyo de la miel)</br></h2>
+    <p style="color: black;">Welcome to Tandoori Grill, the best Indian & Mexican restaurant in Benalmadena. We present fresh and most delicious food.</p>
+  </section>
+  <section id="photos">
+   <img src="C:\Users\simra\Downloads\IMG_3688.jpeg" alt="restaurant" style="width: 100%; height: auto;">
+   <img src="C:\Users\simra\Downloads\IMG_3692.jpeg" alt="Tandoori grill" style="width: 600px; height:400px;">
+   <img src="C:\Users\simra\Downloads\IMG_0565.jpeg" alt="Tandoori grill" style="width: 400px; height:500px;">
+   <img src="C:\Users\simra\Downloads\IMG_5246.jpeg" alt="Tandoori grill" style="width: 400px; height:500px;">
+   <img src="C:\Users\simra\Downloads\IMG_4995.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_4135.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_5191.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_5136.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_0397.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_3908.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_5013.png" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_3845.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+   <img src="C:\Users\simra\Downloads\IMG_8135.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+    <img src="C:\Users\simra\Downloads\IMG_0294.jpeg" alt="Tandoori grill" style="width: 400px; height:600px;">
+ </section>
+ 
+  <section id="menu">
+    <h2>Our INDIAN MENU</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+       
+        <h3>PAPDUM</h3>
+        <p> Deep fried pan cakes with special homemade sauces. – €1</p>
+      </div>
+      <div class="menu-item">
+       
+        <h3>SPICY PAPDUM</h3>
+        <p>Deep fried spicy pan cakes with special homemade sauces.– €1.20</p>
+      </div>
+      <div class="menu-item">
+     
+        <h3>ONION BHAJi</h3>
+        <p>Slice onion rings mixed with gram flour and spices,deep fried until crispy. -€4.50</p>
+      </div>
+      <div class="menu-item">
+      
+        <h3>VEGETABLE SAMOSA</h3>
+        <p>Triangular pasrty filled with green peas and minced meat, deep fried until golden. – €5.50</p>
+      </div>
+      <div class="menu-item">
+     
+        <h3>MEAT SAMOSA</h3>
+        <p>Triangular pastry filles with grean peas and minced meat, deep fried until golden.– €5.95</p>
+      </div>
+      <div class="menu-item">
+    
+        <h3>CHICKEN PAKORA</h3>
+        <p>Slice onion rings mixed with gram flour and spices,deep fried until crispy. -€4.50</p>
+      </div>
+      <div class="menu-item">
+   
+        <h3>VEGETABLE PAKORA</h3>
+        <p>Selection of vegetables marinated with spices deep fried with gram flour. – €4.95</p>
+      </div>
+      <div class="menu-item">
+  
+        <h3> PRAWN PURI</h3>
+        <p>Prawn cooked with onion, tomato bell peppers and herbs served with indian fried puri bread.– €8.95</p>
+      </div>
+      <div class="menu-item">
+    
+        <h3>MIX VEGETABLE PLATTER</h3>
+        <p>Vegetable samosa, onion bhaji, vegetable pakora. -€11.95</p>
+      	</div>
+      <div class="menu-item">
+      
+        <h3>CHICKEN TIKKA</h3>
+        <p>Tender pieces of boneless chicken marianated in mild spices, yogurt and herbs roasted in tandoori(clay oven). – €8.50</p>
+      </div>
+      <div class="menu-item">
+     
+        <h3>CHICKEN CHEESE TIKKA</h3>
+        <p>Tender pieces of boneless chicken with melted cheese,yogurt,herbs and spices roasted in tandoori. . – €9.50</p>
+     </div>
+      <div class="menu-item">
+      
+        <h3>TANDOORI CHICKEN</h3>
+        <p>Chicken on the bone marinated with spices overnight and cooked in tandoori. – €6.95</p>
+    
+     </div>
+      <div class="menu-item">
+  
+        <h3>CHICKEN SHASHLIK</h3
+        <p>Chicken cubes marinated with fresh onions, tomato, bell peppers and spices cooked in tandoori. – €9.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>SEEKH KEBAB</h3>
+        <p>Minced lamb mixed with indian spices, mint, coriander and herbs, cooked and skewered in tandoori. – €7.50</p>
+	</div>
+      <div class="menu-item">
+ 
+        <h3>HARIYALI KEBAB</h3>
+        <p>Chicken marinated with freshmint, coriander, yogurt and spices cooked in tandoori. – €9.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>TANDOORI KING PRAWN</h3>
+        <p>King prawn marinated with ginger, garlic,fresh lemon, yogurt and spices cooked in tandoori. – €17,50</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>MIXED STARTER (TO SHARE)</h3>
+        <p>Tandoori chicken,Chicken tikka and Seekh kebab. – €12.50</p>
+	</div>
+      <div class="menu-item">
+     
+        <h3>TANDOORI GRILL (TO SHARE)</h3>
+        <p>Tandoori king prawn, Tandoori chicken,Seekh kebab and Chicken tikka served with basmati rice or any indian naad bread. – €19.50</p>
+	</div> 
+	</DIV>
+      <div class="menu-item">
+   
+        <h3>CURRY</h3>
+        <p>Cooked with traditional herbs in a rich spicy sauce. – CHICKEN-€11.95   LAMB-€12.95   PRAWN-€13.95</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>ROGAN JOSH</h3>
+        <p>Cooked with fresh tomato, touch of yogurt, rich sauce and indian spices.   CHICKEN– €11,95    LAMB- €12.95   PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>DOPIAZA</h3>
+        <p>Cooked in rich sauce, diced onion, tomato and spices.     CHICKEN– €11.95   LAMB- €12.95    PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>BHUNA</h3>
+        <p>Cooked with thick spicy sauce, tomatoes, bell peppers, garlic and coriander. CHICKEN– €11.95    LAMB- €12.95    PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+     
+        <h3>JALFREZI</h3>
+        <p>Cooked in bittersweet sauce, sliced onion, tomato, bell peppers, ginger and coriander. CHICKEN– €11.95  LAMB- €12.95  PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>DHANSAK</h3>
+        <p>Cooked with rich sauce, lentils, fresh tomato, ginger, garlic and spices. CHICKEN– €11.95   LAMB- €12.95   PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+
+        <h3>PALAK/SAAG</h3>
+        <p>Cooked with spinach, thick spicy and creamy sauce. CHICKEN– €11.95   LAMB- €12.95  </p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>PATHIA/MANGO</h3>
+        <p>Cooked with fresh bell peppers, tomatoes and mango sauce. CHICKEN– €11.95   LAMB- €12.95</p>
+	</div>
+	      <div class="menu-item">
+        
+        <h3>BAHARA/PASANDA</h3>
+        <p>Cooked with rich and thick sauce with ginger, garlic and coconut milk.  CHICKEN– €12.50   LAMB- €13.50    </p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>MUGHLAI</h3>
+        <p>Cooked with mughal style with almond, coconut, yogurt, egg and spices. CHICKEN– €12.50    LAMB- €13.50</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>TIKKA MASALA</h3>
+        <p>Marinated and roasted in tandoori, prepared with cashews, almonds, butter, tomato sauce, fresh cream and chef spices. CHICKEN– €12.95  LAMB- €13.95  PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>KORMA</h3>
+        <p>Prepared with rich sauce, yogurt, almond, coconut, dryfruits, fresh cream, herbs and spices. CHICKEN– €12.95  LAMB- €13.95   PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+ 
+        <h3>MADRAS</h3>
+        <p>A south indian dish, prepared with medium or hot sauce. CHICKEN– €11.95   LAMB- €13.95   PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>VINDALOO</h3>
+        <p>Cooked with rich spicy sauce and hot vindaloo potatoes. CHICKEN– €11.95   LAMB-€12.95  PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>PHAAL</h3>
+        <p>Cooked with very very HOT sauce. only recomended for brave people. CHICKEN– €11.95  LAMB- €12.95   PRAWN- €13.95</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>BUTTER CHICKEN</h3>
+        <p>Marinated chicken cooked in rich creamy sauce with butter and almonds. a very famous indian dish. CHICKEN– €11.95</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>CHICKEN PIRI PIRI</h3>
+        <p>Chicken cooked in dry sauce with onions, tomatoes, peppers and chef special spices. 	CHICKEN– €11.50</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>MURGH MAKAHNI</h3>
+        <p>Boneless tandoori chicken cooked in chef`s special sauce with butter cream. CHICKEN– €11,95</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>GARLIC CHILLI CHICKEN</h3>
+        <p>. Boneless chicken cubes cooked with garlic, green chilli, onion and pepper cubes, lemon and tomatoes with secret chef spices.  CHICKEN- €11.95</p>
+	</div>
+      <div class="menu-item">
+        
+        <h3>BALTI</h3>
+        <p>A very famous north indian dish cooked with spinach, onions, tomatoes, peppers and special spices.  CHICKEN– €12.95   LAMB- €13.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>TANDOORI GRILL SIZZLING KARAHI  (MIXED)</h3>
+        <p>CHICKEN, LAMB and PRAWN cooked with thick sauce, onions, bell peppers, tomatoes, garlic, coriander and special chef spices. – €15.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>OUR BIRYANI</h3>
+        <p>OUR ALL BIRYANI DISHES ARE SERVED WITH RICH CURRY SAUCE OR YOGURT OR RAITA.</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>MIXED VEGETABLE BIRYANI   - €11.95</h3>
+
+	</div>
+      <div class="menu-item">
+ 
+        <h3>CHICKEN BIRYANI   -€12.95</h3>
+       
+	</div>
+      <div class="menu-item">
+        
+        <h3>LAMB BIRYANI -€13.95</h3>
+        
+	</div>
+      <div class="menu-item">
+        
+       <h3>KING PRAWN BIRYANI - €14.95</h3>
+       
+	</div>
+      <div class="menu-item">
+       
+        <h3>TANDOORI GRILL BIRYANI - €16.50</h3>
+        <p>CHICKEN, LAMB and PRAWN</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>MIX VEGETABLE CURRY</h3>
+        <p>Mix vegetable cooked in special curry sauce with medium or mild sauces. – €8.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>BOMBAY ALOO </h3>
+        <p>Potatoes cooked with onions, tomato, garlic touch and green peppers.  -€8.95 </p>
+	</div>
+      <div class="menu-item">
+
+        <h3>ALOO GOBHI</h3>
+        <p>Potatoes and cauliflower cooked with indian spices and herbs. – €8.95</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>SAAG BHAJI</h3>
+        <p>Fresh spinach cooked with butter, thick sauce and our chef spices. – €8.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>MUSHROOM BHAJI</h3>
+        <p>Mushroom cooked with tomato, onion, peppers, ginger. – €8.95</p>
+	</div>
+      <div class="menu-item">
+    
+        <h3>CHANNA MASALA</h3>
+        <p>Chick peas cooked with butter, onions , tomato, herbs, and channa spices. – €8.95</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>TARKA DAAL</h3>
+        <p>Lentils cooked with onion, fresh garlic, tomato, fresh herbs and spices. – €8.95</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>DAAL MAKHANI</h3>
+        <p>Black lentils cooked with creamy sauce, fresh herbs, and indian spices. – €8.95</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>SAAG PANEER</h3>
+        <p>Fresh spinach cooked with cream, butter and cheese. – €9.50</p>
+	</div>
+      <div class="menu-item">
+   
+        <h3>TANDOORI NAAN</h3>
+        
+	</div>
+      <div class="menu-item">
+        
+        <p>PLAIN NAAN – €3.00</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>GARLIC NAAN – €3.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>CHEESE NAAN – €3.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>GARLIC & CHEESE NAAN – €4.50</p>
+	</div>
+      <div class="menu-item">
+       
+        <p>KEEMA NAAN – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>PESHWARI NAAN – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>PARATHA – €2.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>TANDOORI ROTI – €2.00</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>CHAPATI – €1.95</p>
+	</div>
+      <div class="menu-item">
+  
+        <h3>BASMATI RICE</h3>
+        <p>PLAIN RICE – €3.00</p>
+	</div>
+      <div class="menu-item">
+     
+        <p>PILAU RICE – €3.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>PEAS RICE – €4.00</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>EGG RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>MUSHROOM RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>MIX VEGETABLE RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>KEEMA RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+     
+        <p>COCONUT RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <p>GARLIC RICE – €4.50</p>
+	</div>
+      <div class="menu-item">
+        
+        <h3>OUR MEXICAN CUISINE</h3>
+      
+	</div>
+      <div class="menu-item">
+  
+        <h3>GUACAMOLE</h3>
+        <p>Homemade fresh guacamole made with avocado served with crispy nachos – €6.00/p>
+	</div>
+      <div class="menu-item">
+     
+        <h3>CHORIQUESO</h3>
+        <p>A declicous melted cheese with chorizo, chopped onions and tomatoes  – €7.50</p>
+	</div>
+      <div class="menu-item">
+  
+        <h3>GAMBA PIL PIL</h3>
+        <p>Prawns cooked with olive oil, parsly, garlic & chilli – €8.95</p>
+	</div>
+      <div class="menu-item">
+  
+        <h3>ONION RINGS</h3>
+        <p>Freshly homemade onions rings served with special homemade sauce – €5.95</p>
+	</div>
+      <div class="menu-item">
+       
+        <h3>BREADED JALAPEÑOS</h3>
+        <p>Breaded jalapeños filled with cream and cheese, served with special homemade sauce. – €7.95</p></div>
+      <div class="menu-item">
+   
+        <h3>CHICKEN WINGS</h3>
+        <p>Juicy chicken wings served with BBQ – €8.50</p></div>
+      <div class="menu-item">
+    
+        <h3>BEER BATTERD PRAWNS</h3>
+        <p>Juicy king prawns,dipped in our homemade beer batter and lightly fried until golden, served with green chilli sauce – €9.95</p>
+	</div>
+      <div class="menu-item">
+      
+        <h3>CRISPY NACHOS</h3>
+        <p>Triangular corn chips with melting mozzarella and cheddar cheese, topped with guacamole, sour cream, chopped onions, tomatoes, coriander and jalapeños peppers. </p>
+	</div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE NACHOS   €7.95</h3>
+        
+	</div>
+      <div class="menu-item">
+        
+        <h3>CHICKEN NACHOS    €8.95</h3>
+       </div>
+      <div class="menu-item">
+        
+        <h3>CHILLI NACHOS    €9.95</h3>
+        </div>
+      <div class="menu-item">
+       
+        <h3>BEEF NACHOS  €9.95</h3>
+        </DIV>
+      <div class="menu-item">
+        
+        <h3>SHARING PLATTER</h3>
+        </div>
+      <div class="menu-item">
+   
+        <h3>MIX NACHOS    €12.95</h3>
+        <p>Nachos served with grilled chicken and chilli con carne. – </p></div>
+      <div class="menu-item">
+   
+        <h3>TEX MEX PLATTER   €14.95</h3>
+        <p>Served with onion rings, chicken wings, breaded jalapeños.</p></div>
+      <div class="menu-item">
+   
+        <h3>MEXICAN PLATTER    €18.95</h3>
+        <p>Chicken quesadilla, chicken enchilladas and nachos served with guacamole, sour cream, jalapeños peppers and chopped onions, tomatoes. </p></div>
+      <div class="menu-item">
+       
+        <h3>FRESH SALADS</h3>
+</div>
+      <div class="menu-item">
+       
+        <h3>GARDEN SALADS  €8.50</h3>
+        <p>Lettuce, tomato, cucumber, onion, and avocado served with homemade sauce.</p></div>
+      <div class="menu-item">
+ 
+        <h3>FAJITA SALAD  €9.95</h3>
+        <p>Grilled chicken, fresh cheese, lettuce, tomatoes, cucumber, tomato cherry and avocado. served with homemade sauces.</p></div>
+      <div class="menu-item">
+   
+        <h3>CHICKEN CAESER SALAD   €9.50</h3>
+        <p>Romaine lettuce, sunflower seeds, croutons, and grilled chicken salsa ceaser dresssed with cucumber and tomato cherry.</p></div>
+      <div class="menu-item">
+      
+        <h3>MEXICAN SALAD</h3>
+        <p>Lettuce, tomato cucmber, amrinated roasted beef and beans served with homemade sauce.</p></div>
+      <div class="menu-item">
+     
+        <h3>CRISPY TACOS</h3>
+        <p>Three corn shells filled with your choice of your meat or vegetable toppped with cheese, chopped onions and tomatoes. served with guacamole abd sour cream.</p></div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE TACOS  €8.50 </h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>CHICKEN TACOS  €9.95</h3>
+        </p></div>
+      <div class="menu-item">
+        
+        <h3>BEEF TACOS   €10.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>CHILLI TACOS  €10.95</h3>
+  </div>
+      <div class="menu-item">
+       
+        <h3>SIZZLING FAJITAS</h3>
+        <p>A fajita is a term found in tex mex cuisine, the word fajita refers to the method of grilling meat, which was orignally cooked in open filed. all our fajita are served on a sizzling skillet . Choose your faviuritr flavour on a abed of smoky fajita spiced inions and mixxed peppers served with warm flour tortillas shells, sour cream and guacamole.</p></div>
+      <div class="menu-item">
+       
+        <h3>VEGETABLE FAJITA   €10.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>CHICKEN FAJITA  €11.95</h3>
+        </div>
+      <div class="menu-item">
+       
+        <h3>BEEF FAJITA   €12.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>KING PRAWN FAJITA    €12.95</h3>
+        </div>
+      <div class="menu-item">
+       
+        <h3>CLASSIC FAJITA  (TO SHARE)   €19,50</h3>
+        <p>Choose one selection of our fajitas.<br> (CHICKEN+BEEF) (BEEF+KING PRAWN) (KING PRAWN+CHICKEN)</BR></p></div>
+      <div class="menu-item">
+        
+        <h3>TANDOORI GRILL FAJITA (TO SHARE)  €22.95</h3>
+        <p>Grilled chicken , beef and king prawns with six flour tortillas.</p></div>
+      <div class="menu-item">
+        
+        <h3>QUESADILLA</h3>
+        <p>A flour tortilla shell filled  with cheese, chopped onions and tomatoes, grilled and served with guacamole and sour cream.</p></div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE QUESADILLA   €10.95</h3>
+       </div>
+      <div class="menu-item">
+        
+        <h3>CHICKEN QUESADILLA  €11.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>BEEF QUESADILLA   €12.95</h3>
+ </div>
+      <div class="menu-item">
+        
+        <h3>KING PRAWN QUESADILLA   €13.95</h3>
+        </div>
+      <div class="menu-item">
+     
+        <h3>BURRITOS</h3>
+        <p>A Burrito is a type of mexican and tex mex food in a aflour tortilla filled with your choice of meat and vegetable homemade sauce, rice , beans, cheese. served with guacamole and sour cream.</p></div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE BURRITO  €10.95</h3>
+        </div>
+      <div class="menu-item">
+       
+        <h3>CHICKEN BURRITO  €11.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>BEEF BURITTO   €12.95</h3>
+        </div>
+      <div class="menu-item">
+     
+        <h3>SHRIMP BURRITO   €12.95</h3>
+       	 </div>
+      <div class="menu-item">
+        
+        <h3>ENCHILLADAS</h3>
+        <p>Three corn enchilladas filled and wrapped with your choice of meat topprd with tomato sauce, melted mozzrella and cheddar cheese, guacamole chopped onions, tomatoed and sourn  cream, served with rice and beans.</p></div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE ENCHILLADAS   €10.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>CHICKEN ENCHILLADAS  €11.95</h3>
+  </div>
+      <div class="menu-item">
+        
+        <h3>BEEF ENCHILLADAS  €12.95</h3>
+        </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1617196034676-9593711ecf6a?auto=format&fit=crop&w=800&q=80" alt="Biryani Burrito">
+        <h3>CHIMICHANGAS</h3>
+        <p>Chimichanga is a fried burrito prepared with your choice of meat or vegetables, with tex mex spicesand filled with rice, beans and melted cheese, lightly fried until golden. served with guacamole and sour cream.</p> </div>
+      <div class="menu-item">
+        
+        <h3>VEGETABLE CHIMICHANGA  €10.95</h3>
+         </div>
+      <div class="menu-item">
+       
+        <h3>CHICKEN CHIMICHANGA €11.95</h3>
+        </div>
+      <div class="menu-item">
+       
+        <h3>BEEF CHIMICHANGA  €12.95</h3>
+        </div>
+      <div class="menu-item">
+        
+        <h3>HALF / FULL RACK OF RIBS   €11.00/16.00</h3>
+        <p>Ribs flavoured with BBQ ribs sauce, cooked in oven served with chips.</p> </div>
+      <div class="menu-item">
+        
+        <h3>GRILLED CHICKEN BREAST   €12.50</h3>
+        <p>A grilled chicken breast marinated with tex mex soices and homemade sauce, served with french fries or salad..</p> </div>
+      <div class="menu-item">
+       
+        <h3>CHILLI CON CARNE   €12.50</h3>
+        <p>A very typical mexiccan dish, served with mexican rice.</p> </div>
+              
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Since/Desde- 2015, <strong>Tandoori Grill</strong> Discover a delightful fusion of INDIAN and MEXICAN flavours at Tandoori Grill. 
+      Every dish is a celebration of spice, flavour and love- cooked fresh, served with a smile.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>📍 Av. Blas Infante,24, 29631 Benalmadena, màlaga</p>
+      <p>For Reservations & Take Away 📞= +34632408889</p>
+      <p>🕒 Open Daily: 13:00 PM– 23:00 PM</p>
+    </div>
+
+    <form acrion="https://formsubmit.co/singhmonu634@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Tandoori Grill | Follow us on 
+      <a href="#https://www.instagram.com/tandoori_grill_benalmadena?igsh=MXM5OXNpa2kzbjJldw%3D%3D&utm_source=qr">Instagram</a> &
+ <a href="#m.facebook.com/TANDORIGRILL/menu">Facebook</a>
+    </p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Smooth Scroll
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Simple Form Validation
+    const form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      alert('Thank you! Your message has been sent.');
+      form.reset();
+    });
+
+    // Fade-in Animation on Scroll
+    const sections = document.querySelectorAll('section');
+    const showSections = () => {
+      const trigger = window.innerHeight * 0.8;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add('visible');
+      });
+    };
+
+    window.addEventListener('scroll', showSections);
+    showSections();
+  </script>
+</body>
+</html>
